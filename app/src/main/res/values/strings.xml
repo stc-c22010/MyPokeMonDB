@@ -8,6 +8,10 @@
     <string name="tv_hp">HP:</string>
     <string name="tv_add_title">データの追加</string>
     <string name="bt_add_save">追加する</string>
+    <string name="tv_search_title">データの検索</string>
+    <string name="bt_search_id">idで検索</string>
+    <string name="bt_search_name">名前で検索</string>
+    <string name="bt_search_hp">HPで検索</string>
     <string name="bt_back">戻る</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

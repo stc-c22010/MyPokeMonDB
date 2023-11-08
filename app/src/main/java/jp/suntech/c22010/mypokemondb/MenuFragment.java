@@ -90,6 +90,9 @@ public class MenuFragment extends Fragment {
             if(id == R.id.bt_add){
                 transaction.replace(R.id.fcon_main, new AddFragment());
             }
+            else if(id == R.id.bt_search){
+                transaction.replace(R.id.fcon_main, new SearchFragment());
+            }
             transaction.commit();
         }
     }

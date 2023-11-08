@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="number"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_hp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toEndOf="@+id/tv_hp" />
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="text"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_name"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toEndOf="@+id/tv_name" />
@@ -105,7 +105,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_alert" />
 
     <Button
-        android:id="@+id/bt_back"
+        android:id="@+id/bt_add_back"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/bt_back"
