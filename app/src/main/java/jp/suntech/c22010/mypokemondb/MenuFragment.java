@@ -93,6 +93,9 @@ public class MenuFragment extends Fragment {
             else if(id == R.id.bt_search){
                 transaction.replace(R.id.fcon_main, new SearchFragment());
             }
+            else if(id == R.id.bt_del){
+                transaction.replace(R.id.fcon_main, new DeleteFragment());
+            }
             transaction.commit();
         }
     }

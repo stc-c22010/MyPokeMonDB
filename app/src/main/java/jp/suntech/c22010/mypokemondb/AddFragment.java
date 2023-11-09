@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -121,6 +122,7 @@ public class AddFragment extends Fragment {
                     et_id.setText("");
                     et_name.setText("");
                     et_hp.setText("");
+                    Toast.makeText(getContext(), "追加しました。", Toast.LENGTH_SHORT).show();
                 }
             }
         }
