@@ -90,6 +90,7 @@ public class SearchFragment extends Fragment {
                 FragmentManager manager = getParentFragmentManager();
                 manager.popBackStack();
             }
+            //idで検索
             else if(id == R.id.bt_search_id){
                 if(!et_search_id.getText().toString().equals("")) {
                     SQLiteDatabase db = _helper.getWritableDatabase();
@@ -133,9 +134,103 @@ public class SearchFragment extends Fragment {
                     lv_search_res.setAdapter(adapter);
                     cursor.close();
                     db.close();
+                    et_search_id.setText("");
                 }
             }
 
+            else if(id == R.id.bt_search_name){
+                if(!et_search_name.getText().toString().equals("")) {
+                    SQLiteDatabase db = _helper.getWritableDatabase();
+                    String table_name = et_search_name.getText().toString();
+                    String sql = "SELECT COUNT(*) FROM pokemon_list WHERE name LIKE '%" + table_name + "%';";
+                    Cursor cursor = db.rawQuery(sql, null);
+
+                    int data_num = 0;
+                    while (cursor.moveToNext()) {
+                        data_num = cursor.getInt(0);
+                    }
+                    cursor.close();
+
+
+                    tv_search_complete.setText(data_num + "件のデータが見つかりました。");
+
+
+                    sql = "SELECT * FROM pokemon_list WHERE name LIKE '%" + table_name + "%';";
+                    cursor = db.rawQuery(sql, null);
+                    List<Map<String, Object>> search_res_list = new ArrayList<>();
+
+                    String[] FROM = {"id", "name", "hp"};
+                    int[] TO = {R.id.tv_id_row, R.id.tv_name_row, R.id.tv_hp_row};
+
+                    while (cursor.moveToNext()) {
+                        int idx_id = cursor.getColumnIndex("_id");
+                        int idx_name = cursor.getColumnIndex("name");
+                        int idx_hp = cursor.getColumnIndex("hp");
+
+                        int res_id = cursor.getInt(idx_id);
+                        String res_name = cursor.getString(idx_name);
+                        int res_hp = cursor.getInt(idx_hp);
+
+                        Map<String, Object> search_res = new HashMap<>();
+                        search_res.put("id", res_id);
+                        search_res.put("name", res_name);
+                        search_res.put("hp", res_hp);
+                        search_res_list.add(search_res);
+                    }
+                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), search_res_list, R.layout.row, FROM, TO);
+                    lv_search_res.setAdapter(adapter);
+                    cursor.close();
+                    db.close();
+                    et_search_name.setText("");
+                }
+            }
+
+            else if(id == R.id.bt_search_hp){
+                if(!et_search_hp.getText().toString().equals("")) {
+                    SQLiteDatabase db = _helper.getWritableDatabase();
+                    int table_hp = Integer.parseInt(et_search_hp.getText().toString());
+                    String sql = "SELECT COUNT(*) FROM pokemon_list WHERE hp = " + table_hp + ";";
+                    Cursor cursor = db.rawQuery(sql, null);
+
+                    int data_num = 0;
+                    while (cursor.moveToNext()) {
+                        data_num = cursor.getInt(0);
+                    }
+                    cursor.close();
+
+
+                    tv_search_complete.setText(data_num + "件のデータが見つかりました。");
+
+
+                    sql = "SELECT * FROM pokemon_list WHERE hp = " + table_hp + ";";
+                    cursor = db.rawQuery(sql, null);
+                    List<Map<String, Object>> search_res_list = new ArrayList<>();
+
+                    String[] FROM = {"id", "name", "hp"};
+                    int[] TO = {R.id.tv_id_row, R.id.tv_name_row, R.id.tv_hp_row};
+
+                    while (cursor.moveToNext()) {
+                        int idx_id = cursor.getColumnIndex("_id");
+                        int idx_name = cursor.getColumnIndex("name");
+                        int idx_hp = cursor.getColumnIndex("hp");
+
+                        int res_id = cursor.getInt(idx_id);
+                        String res_name = cursor.getString(idx_name);
+                        int res_hp = cursor.getInt(idx_hp);
+
+                        Map<String, Object> search_res = new HashMap<>();
+                        search_res.put("id", res_id);
+                        search_res.put("name", res_name);
+                        search_res.put("hp", res_hp);
+                        search_res_list.add(search_res);
+                    }
+                    SimpleAdapter adapter = new SimpleAdapter(getActivity(), search_res_list, R.layout.row, FROM, TO);
+                    lv_search_res.setAdapter(adapter);
+                    cursor.close();
+                    db.close();
+                    et_search_hp.setText("");
+                }
+            }
         }
     }
 }
