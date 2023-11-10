@@ -25,6 +25,8 @@ import java.util.Map;
 public class ListFragment extends Fragment {
     DatabaseHelper _helper;
 
+    ListView lv_main;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -70,8 +72,11 @@ public class ListFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_list, container, false);
 
-        ListView lv_main = v.findViewById(R.id.lv_main);
+        lv_main = v.findViewById(R.id.lv_main);
 
+        return v;
+    }
+    public void UpdateList(){
         SQLiteDatabase db = _helper.getWritableDatabase();
         String sql = "SELECT * FROM pokemon_list;";
         Cursor cursor = db.rawQuery(sql, null);
@@ -99,7 +104,5 @@ public class ListFragment extends Fragment {
         lv_main.setAdapter(adapter);
         cursor.close();
         db.close();
-
-        return v;
     }
 }

@@ -71,6 +71,7 @@ public class AddFragment extends Fragment {
             int id = v.getId();
             if(id == R.id.bt_add_back){
                 FragmentManager manager = getParentFragmentManager();
+
                 manager.popBackStack();
             }
             else if(id == R.id.bt_add_save){
