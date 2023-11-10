@@ -14,5 +14,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="jp.suntech.c22010.mypokemondb.ListFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/guideline8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
