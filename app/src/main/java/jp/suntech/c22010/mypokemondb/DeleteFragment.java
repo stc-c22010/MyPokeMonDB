@@ -117,7 +117,7 @@ public class DeleteFragment extends Fragment {
             sql = "SELECT * FROM pokemon_list WHERE _id = " + table_id + ";";
         }
         else if(del_column.equals("name")){
-            sql = "SELECT * FROM pokemon_list WHERE name = '" + table_name + "';";
+            sql = "SELECT * FROM pokemon_list WHERE name LIKE '%" + table_name + "%';";
         }
         else if(del_column.equals("hp")){
             sql = "SELECT * FROM pokemon_list WHERE hp = " + table_hp + ";";
@@ -136,7 +136,7 @@ public class DeleteFragment extends Fragment {
             String res_name = cursor.getString(idx_name);
             int res_hp = cursor.getInt(idx_hp);
 
-            dialog_table_msg += "id: " + idx_id + "  名前: " + res_name + "  hp: " + res_hp + "\n";
+            dialog_table_msg += "id: " + res_id + "  名前: " + res_name + "  hp: " + res_hp + "\n";
         }
         cursor.close();
         db.close();
@@ -151,7 +151,7 @@ public class DeleteFragment extends Fragment {
             sql = "DELETE FROM pokemon_list WHERE _id = " + table_id + ";";
         }
         else if(del_column.equals("name")){
-            sql = "DELETE FROM pokemon_list WHERE name = '" + table_name + "';";
+            sql = "DELETE FROM pokemon_list WHERE name LIKE '%" + table_name + "%';";
         }
         else if(del_column.equals("hp")){
             sql = "DELETE FROM pokemon_list WHERE hp = " + table_hp + ";";
