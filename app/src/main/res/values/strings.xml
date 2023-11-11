@@ -17,6 +17,14 @@
     <string name="bt_del_name">名前で削除</string>
     <string name="bt_del_hp">hpで削除</string>
     <string name="bt_back">戻る</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="compete_add">追加しました。</string>
+    <string name="empty_err_add">空欄があります。</string>
+    <string name="already_err_add">既に存在するidです。</string>
+    <string name="not_exist_err">削除対象が見つかりませんでした。</string>
+    <string name="complete_del">削除しました。</string>
+    <string name="complete_search">件のデータが見つかりました。</string>
+    <string name="dialog_title">削除確認</string>
+    <string name="dialog_msg">以下のデータを削除しますが、よろしいですか？</string>
+    <string name="dialog_btn_ok">はい</string>
+    <string name="dialog_btn_ng">いいえ</string>
 </resources>

@@ -111,7 +111,8 @@
         android:text="@string/bt_back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/bt_add_save" />
 
     <TextView
         android:id="@+id/tv_alert"

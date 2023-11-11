@@ -24,7 +24,7 @@
         app:layout_constraintGuide_percent="0.55" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
+        android:id="@+id/fcon_main_list"
         android:name="jp.suntech.c22010.mypokemondb.ListFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

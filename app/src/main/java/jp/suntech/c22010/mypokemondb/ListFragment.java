@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,12 +72,24 @@ public class ListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        container.removeAllViews();
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_list, container, false);
 
         lv_main = v.findViewById(R.id.lv_main);
+        TextView tv_list_desc = v.findViewById(R.id.tv_list_desc);
+
+        tv_list_desc.setText("");
+
+        UpdateList();
 
         return v;
+    }
+
+    @Override
+    public void onDestroy(){
+        _helper.close();
+        super.onDestroy();
     }
     public void UpdateList(){
         SQLiteDatabase db = _helper.getWritableDatabase();

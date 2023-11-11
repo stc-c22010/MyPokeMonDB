@@ -1,11 +1,18 @@
 package jp.suntech.c22010.mypokemondb;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +20,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.jetbrains.annotations.Nullable;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +34,12 @@ public class DeleteFragment extends Fragment {
     EditText et_del_id;
     EditText et_del_name;
     EditText et_del_hp;
+
+    String del_column = "";
+
+    int table_id = 0;
+    String table_name = "";
+    int table_hp = 0;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -88,6 +103,84 @@ public class DeleteFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onDestroy(){
+        _helper.close();
+        super.onDestroy();
+    }
+
+    private String SelectData(){
+        SQLiteDatabase db = _helper.getWritableDatabase();
+
+        String sql = "";
+        if(del_column.equals("_id")) {
+            sql = "SELECT * FROM pokemon_list WHERE _id = " + table_id + ";";
+        }
+        else if(del_column.equals("name")){
+            sql = "SELECT * FROM pokemon_list WHERE name = '" + table_name + "';";
+        }
+        else if(del_column.equals("hp")){
+            sql = "SELECT * FROM pokemon_list WHERE hp = " + table_hp + ";";
+        }
+
+        Cursor cursor = db.rawQuery(sql, null);
+
+        String dialog_table_msg = "";
+        int cnt = 0;
+        while (cursor.moveToNext()) {
+            int idx_id = cursor.getColumnIndex("_id");
+            int idx_name = cursor.getColumnIndex("name");
+            int idx_hp = cursor.getColumnIndex("hp");
+
+            int res_id = cursor.getInt(idx_id);
+            String res_name = cursor.getString(idx_name);
+            int res_hp = cursor.getInt(idx_hp);
+
+            dialog_table_msg += "id: " + idx_id + "  名前: " + res_name + "  hp: " + res_hp + "\n";
+        }
+        cursor.close();
+        db.close();
+
+        return dialog_table_msg;
+    }
+
+    public void DeleteData(){
+        SQLiteDatabase db = _helper.getWritableDatabase();
+        String sql = "";
+        if(del_column.equals("_id")) {
+            sql = "DELETE FROM pokemon_list WHERE _id = " + table_id + ";";
+        }
+        else if(del_column.equals("name")){
+            sql = "DELETE FROM pokemon_list WHERE name = '" + table_name + "';";
+        }
+        else if(del_column.equals("hp")){
+            sql = "DELETE FROM pokemon_list WHERE hp = " + table_hp + ";";
+        }
+
+        SQLiteStatement stmt = db.compileStatement(sql);
+        stmt.executeUpdateDelete();
+
+        Toast.makeText(getContext(), "削除しました。", Toast.LENGTH_SHORT).show();
+        FragmentManager manager = getParentFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.setReorderingAllowed(true);
+        transaction.replace(R.id.fcon_main_list, new ListFragment());
+        transaction.commit();
+    }
+
+    private void MakeDialog (String dialog_table_msg){
+        if(dialog_table_msg.equals("")){
+            Toast.makeText(getContext(), R.string.not_exist_err, Toast.LENGTH_SHORT).show();
+        }
+        else {
+            DeleteConfirmDialogFragment dialog_fragment = new DeleteConfirmDialogFragment();
+            Bundle args = new Bundle();
+            args.putString("arg1", dialog_table_msg);
+            dialog_fragment.setArguments(args);
+            dialog_fragment.show(getChildFragmentManager(), "DeleteConfirmDialogFragment");
+        }
+    }
+
     private class BtnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -98,43 +191,39 @@ public class DeleteFragment extends Fragment {
             }
             else if(id == R.id.bt_del_id){
                 if(!et_del_id.getText().toString().equals("")){
-                    SQLiteDatabase db = _helper.getWritableDatabase();
-                    int table_id = Integer.parseInt(et_del_id.getText().toString());
-                    String sql = "DELETE FROM pokemon_list WHERE _id = " + table_id + ";";
+                    del_column = "_id";
+                    table_id = Integer.parseInt(et_del_id.getText().toString());
 
-                    SQLiteStatement stmt = db.compileStatement(sql);
-                    stmt.executeUpdateDelete();
+                    String dialog_table_msg = SelectData();
+                    MakeDialog(dialog_table_msg);
 
                     et_del_id.setText("");
-                    Toast.makeText(getContext(), "削除しました。", Toast.LENGTH_SHORT).show();
                 }
             }
             else if(id == R.id.bt_del_name){
                 if(!et_del_name.getText().toString().equals("")){
-                    SQLiteDatabase db = _helper.getWritableDatabase();
-                    String table_name = et_del_name.getText().toString();
-                    String sql = "DELETE FROM pokemon_list WHERE name LIKE '%" + table_name + "%';";
+                    del_column = "name";
+                    table_name = et_del_name.getText().toString();
 
-                    SQLiteStatement stmt = db.compileStatement(sql);
-                    stmt.executeUpdateDelete();
+                    String dialog_table_msg = SelectData();
+                    MakeDialog(dialog_table_msg);
 
                     et_del_name.setText("");
-                    Toast.makeText(getContext(), "削除しました。", Toast.LENGTH_SHORT).show();
                 }
             }
             else if(id == R.id.bt_del_hp){
                 if(!et_del_hp.getText().toString().equals("")){
-                    SQLiteDatabase db = _helper.getWritableDatabase();
-                    int table_hp = Integer.parseInt(et_del_hp.getText().toString());
-                    String sql = "DELETE FROM pokemon_list WHERE hp = " + table_hp + ";";
+                    del_column = "hp";
+                    table_hp = Integer.parseInt(et_del_hp.getText().toString());
 
-                    SQLiteStatement stmt = db.compileStatement(sql);
-                    stmt.executeUpdateDelete();
+                    String dialog_table_msg = SelectData();
+                    MakeDialog(dialog_table_msg);
 
                     et_del_hp.setText("");
-                    Toast.makeText(getContext(), "削除しました。", Toast.LENGTH_SHORT).show();
                 }
             }
         }
     }
+
+
 }

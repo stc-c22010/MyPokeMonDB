@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,9 +32,9 @@ public class SearchFragment extends Fragment {
     EditText et_search_id;
     EditText et_search_name;
     EditText et_search_hp;
-    TextView tv_search_complete;
+    TextView tv_list_desc;
 
-    ListView lv_search_res;
+    ListView lv_main;
     public SearchFragment() {
         // Required empty public constructor
     }
@@ -66,8 +67,8 @@ public class SearchFragment extends Fragment {
         et_search_id = v.findViewById(R.id.et_search_id);
         et_search_name = v.findViewById(R.id.et_search_name);
         et_search_hp = v.findViewById(R.id.et_search_hp);
-        tv_search_complete = v.findViewById(R.id.tv_search_complete);
-        lv_search_res = v.findViewById(R.id.lv_search_res);
+        tv_list_desc = getActivity().findViewById(R.id.tv_list_desc);
+        lv_main = getActivity().findViewById(R.id.lv_main);
 
         bt_back.setOnClickListener(listener);
         bt_search_id.setOnClickListener(listener);
@@ -75,6 +76,22 @@ public class SearchFragment extends Fragment {
         bt_search_hp.setOnClickListener(listener);
 
         return v;
+    }
+
+    @Override
+    public void onPause(){
+        FragmentManager manager = getParentFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.setReorderingAllowed(true);
+        transaction.replace(R.id.fcon_main_list, new ListFragment());
+        transaction.commit();
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy(){
+        _helper.close();
+        super.onDestroy();
     }
 
     private class BtnClickListener implements View.OnClickListener{
@@ -102,7 +119,7 @@ public class SearchFragment extends Fragment {
                     cursor.close();
 
 
-                    tv_search_complete.setText(data_num + "件のデータが見つかりました。");
+
 
 
                     sql = "SELECT * FROM pokemon_list WHERE _id = " + table_id + ";";
@@ -128,10 +145,11 @@ public class SearchFragment extends Fragment {
                         search_res_list.add(search_res);
                     }
                     SimpleAdapter adapter = new SimpleAdapter(getActivity(), search_res_list, R.layout.row, FROM, TO);
-                    lv_search_res.setAdapter(adapter);
+                    lv_main.setAdapter(adapter);
                     cursor.close();
                     db.close();
                     et_search_id.setText("");
+                    tv_list_desc.setText(data_num + R.string.complete_search);
                 }
             }
 
@@ -149,7 +167,6 @@ public class SearchFragment extends Fragment {
                     cursor.close();
 
 
-                    tv_search_complete.setText(data_num + "件のデータが見つかりました。");
 
 
                     sql = "SELECT * FROM pokemon_list WHERE name LIKE '%" + table_name + "%';";
@@ -175,10 +192,12 @@ public class SearchFragment extends Fragment {
                         search_res_list.add(search_res);
                     }
                     SimpleAdapter adapter = new SimpleAdapter(getActivity(), search_res_list, R.layout.row, FROM, TO);
-                    lv_search_res.setAdapter(adapter);
+                    lv_main.setAdapter(adapter);
                     cursor.close();
                     db.close();
                     et_search_name.setText("");
+                    tv_list_desc.setText(data_num + R.string.complete_search);
+
                 }
             }
 
@@ -196,7 +215,6 @@ public class SearchFragment extends Fragment {
                     cursor.close();
 
 
-                    tv_search_complete.setText(data_num + "件のデータが見つかりました。");
 
 
                     sql = "SELECT * FROM pokemon_list WHERE hp = " + table_hp + ";";
@@ -222,10 +240,12 @@ public class SearchFragment extends Fragment {
                         search_res_list.add(search_res);
                     }
                     SimpleAdapter adapter = new SimpleAdapter(getActivity(), search_res_list, R.layout.row, FROM, TO);
-                    lv_search_res.setAdapter(adapter);
+                    lv_main.setAdapter(adapter);
                     cursor.close();
                     db.close();
                     et_search_hp.setText("");
+                    tv_list_desc.setText(data_num + R.string.complete_search);
+
                 }
             }
         }

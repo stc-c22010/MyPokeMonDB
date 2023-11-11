@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,6 +65,12 @@ public class AddFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onDestroy(){
+        _helper.close();
+        super.onDestroy();
+    }
+
     private class BtnClickListener implements View.OnClickListener{
         @Override
         public void onClick(View v) {
@@ -81,7 +88,7 @@ public class AddFragment extends Fragment {
                 if(et_id.getText().toString().equals("")
                         || et_name.getText().toString().equals("")
                         || et_hp.getText().toString().equals("")){
-                    msg += "空欄があります。";
+                    msg += R.string.empty_err_add;
                 }
                 if(!et_id.getText().toString().equals("")) {
 
@@ -97,7 +104,10 @@ public class AddFragment extends Fragment {
                     cursor.close();
                     db.close();
                     if(data_num != 0){
-                        msg += "\n既に存在するidです。";
+                        if(!msg.equals("")){
+                            msg += "\n";
+                        }
+                        msg += R.string.already_err_add;
                     }
                 }
 
@@ -123,7 +133,13 @@ public class AddFragment extends Fragment {
                     et_id.setText("");
                     et_name.setText("");
                     et_hp.setText("");
-                    Toast.makeText(getContext(), "追加しました。", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.compete_add, Toast.LENGTH_SHORT).show();
+
+                    FragmentManager manager = getParentFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    transaction.setReorderingAllowed(true);
+                    transaction.replace(R.id.fcon_main_list, new ListFragment());
+                    transaction.commit();
                 }
             }
         }
