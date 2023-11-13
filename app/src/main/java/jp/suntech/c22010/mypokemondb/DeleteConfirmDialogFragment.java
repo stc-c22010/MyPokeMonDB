@@ -25,7 +25,7 @@ public class DeleteConfirmDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(deleteFragment.getContext());
         builder.setTitle(R.string.dialog_title);
 
-        builder.setMessage(R.string.dialog_msg + "\n" + dialog_table_msg);
+        builder.setMessage(getResources().getString(R.string.dialog_msg) + "\n" + dialog_table_msg);
 
 
         builder.setPositiveButton(R.string.dialog_btn_ok, new DialogButtonClickListener());

@@ -149,7 +149,8 @@ public class SearchFragment extends Fragment {
                     cursor.close();
                     db.close();
                     et_search_id.setText("");
-                    tv_list_desc.setText(data_num + R.string.complete_search);
+                    String data_num_str = data_num + getResources().getString(R.string.complete_search);
+                    tv_list_desc.setText(data_num_str);
                 }
             }
 
@@ -196,8 +197,8 @@ public class SearchFragment extends Fragment {
                     cursor.close();
                     db.close();
                     et_search_name.setText("");
-                    tv_list_desc.setText(data_num + R.string.complete_search);
-
+                    String data_num_str = data_num + getResources().getString(R.string.complete_search);
+                    tv_list_desc.setText(data_num_str);
                 }
             }
 
@@ -244,8 +245,8 @@ public class SearchFragment extends Fragment {
                     cursor.close();
                     db.close();
                     et_search_hp.setText("");
-                    tv_list_desc.setText(data_num + R.string.complete_search);
-
+                    String data_num_str = data_num + getResources().getString(R.string.complete_search);
+                    tv_list_desc.setText(data_num_str);
                 }
             }
         }
