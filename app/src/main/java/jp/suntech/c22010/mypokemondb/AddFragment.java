@@ -81,7 +81,7 @@ public class AddFragment extends Fragment {
                 if(et_id.getText().toString().equals("")
                         || et_name.getText().toString().equals("")
                         || et_hp.getText().toString().equals("")){
-                    msg += R.string.empty_err_add;
+                    msg += getResources().getString(R.string.empty_err_add);
                 }
                 if(!et_id.getText().toString().equals("")) {
 
@@ -100,7 +100,7 @@ public class AddFragment extends Fragment {
                         if(!msg.equals("")){
                             msg += "\n";
                         }
-                        msg += R.string.already_err_add;
+                        msg += getResources().getString(R.string.already_err_add);
                     }
                 }
 
