@@ -133,6 +133,7 @@ public class AddFragment extends Fragment {
                     transaction.setReorderingAllowed(true);
                     transaction.replace(R.id.fcon_main_list, new ListFragment());
                     transaction.commit();
+                    db.close();
                 }
             }
         }

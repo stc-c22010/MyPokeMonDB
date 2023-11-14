@@ -42,6 +42,24 @@ public class ResetConfirmDialogFragment extends DialogFragment {
         SQLiteStatement stmt = db.compileStatement(sql);
         stmt.executeUpdateDelete();
 
+
+
+
+        String name_array[] = {"フシギダネ", "フシギソウ", "フシギバナ", "ヒトカゲ", "リザード", "リザードン", "ゼニガメ", "カメール", "カメックス", "キャタピー", "トランセル", "バタフリー", "ビードル", "コクーン", "スピアー", "ポッポ", "ピジョン", "ピジョット", "コラッタ", "ラッタ", "オニスズメ", "オニドリル", "アーボ", "アーボック", "ピカチュウ", "ライチュウ"};
+        int hp_array[] = {45, 60, 80, 39, 58, 78, 44, 59, 79, 45, 50, 60, 40, 45, 65, 40, 63, 83, 30, 55, 40, 65, 35, 60, 35, 60};
+        for(int i = 0; i < 10; i++){
+            String sqlInsert = "INSERT INTO pokemon_list (_id, name, hp) VALUES (?, ?, ?)";
+            stmt = db.compileStatement(sqlInsert);
+
+            stmt.bindLong(1, i+1);
+            stmt.bindString(2, name_array[i]);
+            stmt.bindLong(3, hp_array[i]);
+
+            stmt.executeInsert();
+        }
+
+
+
         Toast.makeText(getActivity(), R.string.complete_reset, Toast.LENGTH_SHORT).show();
 
         FragmentManager manager = getParentFragment().getParentFragmentManager();
