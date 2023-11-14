@@ -20,75 +20,51 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/tv_name"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/bt_del_id" />
+        app:layout_constraintTop_toBottomOf="@+id/et_del_id" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/tv_hp"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/bt_del_name" />
+        app:layout_constraintTop_toBottomOf="@+id/et_del_name" />
 
     <EditText
         android:id="@+id/et_del_id"
-        android:layout_width="183dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline7" />
 
     <EditText
         android:id="@+id/et_del_name"
-        android:layout_width="163dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline7" />
 
     <EditText
         android:id="@+id/et_del_hp"
-        android:layout_width="177dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline7" />
-
-    <Button
-        android:id="@+id/bt_del_id"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/bt_del_id"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toEndOf="@+id/et_del_id"
-        app:layout_constraintTop_toTopOf="@+id/et_del_id" />
-
-    <Button
-        android:id="@+id/bt_del_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/bt_del_name"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toEndOf="@+id/et_del_name"
-        app:layout_constraintTop_toTopOf="@+id/et_del_name" />
-
-    <Button
-        android:id="@+id/bt_del_hp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/bt_del_hp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toEndOf="@+id/et_del_hp"
-        app:layout_constraintTop_toTopOf="@+id/et_del_hp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -122,7 +98,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/et_del_hp" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_del_execute" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"
@@ -130,5 +106,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="85dp" />
+
+    <Button
+        android:id="@+id/bt_del_execute"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/bt_del"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/et_del_hp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,11 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class AddFragment extends Fragment {
     private DatabaseHelper _helper;
 
@@ -32,10 +28,7 @@ public class AddFragment extends Fragment {
 
     public AddFragment(){
     }
-    public static AddFragment newInstance(String param1, String param2) {
-        AddFragment fragment = new AddFragment();
-        return fragment;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

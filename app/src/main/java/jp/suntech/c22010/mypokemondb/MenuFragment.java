@@ -10,18 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MenuFragment#newInstance} factory method to
- * create an instance of this fragment.
- *
- */
-public class MenuFragment extends Fragment {
 
-    public static MenuFragment newInstance(String param1, String param2) {
-        MenuFragment fragment = new MenuFragment();
-        return fragment;
-    }
+public class MenuFragment extends Fragment {
 
     public MenuFragment() {
         // Required empty public constructor

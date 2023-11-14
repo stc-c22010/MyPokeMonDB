@@ -27,8 +27,7 @@ public class DeleteConfirmDialogFragment extends DialogFragment {
         builder.setNegativeButton(R.string.dialog_btn_ng, new DialogButtonClickListener());
 
 
-        AlertDialog dialog = builder.create();
-        return dialog;
+        return builder.create();
     }
 
     private class DialogButtonClickListener implements DialogInterface.OnClickListener{

@@ -20,77 +20,51 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/tv_name"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/bt_search_id" />
+        app:layout_constraintTop_toBottomOf="@+id/et_search_id" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/tv_hp"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/bt_search_name" />
+        app:layout_constraintTop_toBottomOf="@+id/et_search_name" />
 
     <EditText
         android:id="@+id/et_search_id"
-        android:layout_width="178dp"
+        android:layout_width="0dp"
         android:layout_height="41dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline6" />
 
     <EditText
         android:id="@+id/et_search_name"
-        android:layout_width="162dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:ems="10"
         android:inputType="text"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView3"
-        app:layout_constraintStart_toEndOf="@+id/textView3" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline6" />
 
     <EditText
         android:id="@+id/et_search_hp"
-        android:layout_width="174dp"
+        android:layout_width="0dp"
         android:layout_height="42dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline6" />
-
-    <Button
-        android:id="@+id/bt_search_id"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/bt_search_id"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toEndOf="@+id/et_search_id"
-        app:layout_constraintTop_toTopOf="@+id/et_search_id" />
-
-    <Button
-        android:id="@+id/bt_search_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/bt_search_name"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toEndOf="@+id/et_search_name"
-        app:layout_constraintTop_toTopOf="@+id/et_search_name" />
-
-    <Button
-        android:id="@+id/bt_search_hp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/bt_search_hp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/et_search_hp"
-        app:layout_constraintTop_toTopOf="@+id/et_search_hp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -124,7 +98,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/et_search_hp" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_search_execute" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
@@ -132,4 +106,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="85dp" />
+
+    <Button
+        android:id="@+id/bt_search_execute"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/bt_search"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/et_search_hp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

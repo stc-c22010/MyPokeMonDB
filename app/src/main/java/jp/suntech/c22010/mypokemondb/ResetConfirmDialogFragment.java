@@ -31,8 +31,7 @@ public class ResetConfirmDialogFragment extends DialogFragment {
         builder.setNegativeButton(R.string.dialog_btn_ng, new DialogButtonClickListener());
 
 
-        AlertDialog dialog = builder.create();
-        return dialog;
+        return builder.create();
     }
 
     public void ResetData(){
@@ -50,6 +49,8 @@ public class ResetConfirmDialogFragment extends DialogFragment {
         transaction.setReorderingAllowed(true);
         transaction.replace(R.id.fcon_main_list, new ListFragment());
         transaction.commit();
+        db.close();
+        _helper.close();
     }
 
     private class DialogButtonClickListener implements DialogInterface.OnClickListener{

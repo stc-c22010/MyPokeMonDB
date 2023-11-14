@@ -10,13 +10,7 @@
     <string name="tv_add_title">データの追加</string>
     <string name="bt_add_save">追加する</string>
     <string name="tv_search_title">データの検索</string>
-    <string name="bt_search_id">idで検索</string>
-    <string name="bt_search_name">名前で検索</string>
-    <string name="bt_search_hp">HPで検索</string>
     <string name="tv_del_title">データの削除</string>
-    <string name="bt_del_id">idで削除</string>
-    <string name="bt_del_name">名前で削除</string>
-    <string name="bt_del_hp">hpで削除</string>
     <string name="bt_back">戻る</string>
     <string name="compete_add">追加しました。</string>
     <string name="empty_err_add">空欄があります。</string>
