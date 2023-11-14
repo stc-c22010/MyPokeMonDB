@@ -18,30 +18,8 @@ import android.widget.Button;
  */
 public class MenuFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MenuFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static MenuFragment newInstance(String param1, String param2) {
         MenuFragment fragment = new MenuFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -52,10 +30,6 @@ public class MenuFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -69,10 +43,12 @@ public class MenuFragment extends Fragment {
         Button bt_add = view.findViewById(R.id.bt_add);
         Button bt_search = view.findViewById(R.id.bt_search);
         Button bt_del = view.findViewById(R.id.bt_del);
+        Button bt_reset = view.findViewById(R.id.bt_reset);
 
         bt_add.setOnClickListener(listener);
         bt_search.setOnClickListener(listener);
         bt_del.setOnClickListener(listener);
+        bt_reset.setOnClickListener(listener);
 
         return view;
     }
@@ -80,13 +56,20 @@ public class MenuFragment extends Fragment {
     private class BtnClickListener implements View.OnClickListener{
         @Override
         public void onClick(View v) {
+            int id = v.getId();
+
+            if(id == R.id.bt_reset){
+                ResetConfirmDialogFragment dialogFragment = new ResetConfirmDialogFragment();
+                dialogFragment.show(getChildFragmentManager(), "ResetConfirmDialogFragment");
+                return;
+            }
 
             FragmentManager manager = getParentFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.setReorderingAllowed(true);
             transaction.addToBackStack("Only List");
 
-            int id = v.getId();
+
             if(id == R.id.bt_add){
                 transaction.replace(R.id.fcon_main, new AddFragment());
             }
@@ -96,6 +79,7 @@ public class MenuFragment extends Fragment {
             else if(id == R.id.bt_del){
                 transaction.replace(R.id.fcon_main, new DeleteFragment());
             }
+
             transaction.commit();
         }
     }

@@ -3,6 +3,7 @@
     <string name="bt_add">追加</string>
     <string name="bt_search">検索</string>
     <string name="bt_del">削除</string>
+    <string name="bt_reset">初期化</string>
     <string name="tv_id">id:</string>
     <string name="tv_name">名前:</string>
     <string name="tv_hp">HP:</string>
@@ -23,8 +24,11 @@
     <string name="not_exist_err">削除対象が見つかりませんでした。</string>
     <string name="complete_del">削除しました。</string>
     <string name="complete_search">件のデータが見つかりました。</string>
-    <string name="dialog_title">削除確認</string>
-    <string name="dialog_msg">以下のデータを削除しますが、よろしいですか？</string>
+    <string name="dialog_title_del">削除確認</string>
+    <string name="dialog_msg_del">以下のデータを削除しますが、よろしいですか？</string>
+    <string name="dialog_title_reset">初期化確認</string>
+    <string name="dialog_msg_reset">データを初期化しますが、よろしいですか？</string>
+    <string name="complete_reset">初期化しました。</string>
     <string name="dialog_btn_ok">はい</string>
     <string name="dialog_btn_ng">いいえ</string>
 </resources>
